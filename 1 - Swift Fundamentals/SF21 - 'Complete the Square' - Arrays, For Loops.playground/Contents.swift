@@ -46,3 +46,4 @@ print(squaredTotal)
 
 let cubedTotal = completeTheSquare(numbers: [1,2,2], exponent: 3)
 print(cubedTotal)
+print("Hello world")
