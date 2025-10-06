@@ -30,6 +30,21 @@ func sumOfPositives(_ numbers: [Int]) -> Int {
 print(sumOfPositives([1, -4, 7, 12]))
 print(sumOfPositives([-5, -2, 0]))
 
+// Just practice to see what I would get if I used the same code for the negitive numbers
+func sumOfNegitives(_ numbers: [Int]) -> Int {
+    var total = 0
+    
+    for n in numbers {
+        if n < 0 {
+            total -= n
+        }
+    }
+    return total
+}
+
+print(sumOfNegitives([1, -4, 7, 12]))
+print(sumOfNegitives([-5, -2, 0]))
+
 
 func separatingPositivesAndNegatives(_ numbers: [Int]) -> (positives: [Int], negatives: [Int]) {
     var positives: [Int] = []
@@ -46,5 +61,6 @@ func separatingPositivesAndNegatives(_ numbers: [Int]) -> (positives: [Int], neg
 }
 
 let separated = separatingPositivesAndNegatives([5, -3, 0, -8, 2])
+
 print("Positives: \(separated.positives)")
 print("Negatives: \(separated.negatives)")

@@ -21,3 +21,17 @@
     //  Create another function. Accomplish the same goal using generics instead of function overloading.
 
 import Foundation
+
+func findValue(_ array: [Int], _ x: Int) -> Bool {
+    return array.contains(x)
+}
+
+func findValue(_ array: [String], _ a: String) -> Bool {
+    return array.contains(a)
+}
+
+print(findValue([3, 4, 5, 8, 9], 3))
+print(findValue([17,24,42,55], 497))
+print(findValue(["hi", "hello", "howdy"], "sup"))
+print(findValue(["goodbye", "see you later", "till next time"], "goodbye"))
+

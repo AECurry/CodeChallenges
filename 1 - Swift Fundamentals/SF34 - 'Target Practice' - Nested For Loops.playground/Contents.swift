@@ -22,3 +22,59 @@
     //  There is another solution to this problem that does not take as long, though it may be difficult at this stage in your progress to know how to code it. In a comment, brainstorm how that secondary solution might work.
 
 import Foundation
+
+func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
+    var indexByNumber = [Int: Int]()
+    
+    for(index, number) in nums.enumerated() {
+        let complement = target - number
+        
+        if let complementIndex = indexByNumber[complement] {
+            return [complementIndex, index]
+        }
+        
+        indexByNumber[number] = index
+    }
+    
+    return []
+}
+
+print(twoSum([2, 7, 11, 15], 9))
+print(twoSum([3, 2, 4], 6))
+print(twoSum([5, 3, 8, 3, 7], 6))
+
+
+// Black Diamond
+
+func largeSumArray(_ nums: [Int], _ target: Int) -> [Int] {
+    for i in 0..<nums.count {
+        for j in i+1..<nums.count {
+            if nums[i] + nums[j] == target {
+                return [i, j]
+            }
+        }
+    }
+    
+    return []
+}
+
+// Using a nested loop means for each number in the array, the computer checks every other numer after it to see if the sum equals the target.
+// For very large arrays (like 10,000 elements), that could possible be about 50 million checks. That's why the time required grows very quickly as the array size increases.
+
+
+func largeSumDictionary(_ nums: [Int], _ target: Int) -> [Int] {
+    var indexByNumber = [Int: Int]()
+
+       for (index, number) in nums.enumerated() {
+           let complement = target - number
+           if let complementIndex = indexByNumber[complement] {
+               return [complementIndex, index]
+           }
+           indexByNumber[number] = index
+       }
+
+return []
+
+}
+
+// This loops the array once (no nested loops, no repeated checks) and uses a dictionary to remember numbers

@@ -17,3 +17,33 @@
     //  This is an article with complicated computer science theory; you do not need to understand the entire history of computing after reading one Wiki page. Take notes in a comment in this challenge on what you do glean and learn about the different sorting algorithms as you skim through.
 
 import Foundation
+
+func bubbleSort(_ nums: [Int]) -> [Int] {
+    var sortedNums = nums
+    let n = sortedNums.count
+    
+    for i in 0..<n {
+        for j in 0..<n-i-1 {
+            if sortedNums[j] > sortedNums[j+1] {
+                let temp = sortedNums[j]
+                sortedNums[j] = sortedNums[j+1]
+                sortedNums[j+1] = temp
+            }
+        }
+    }
+    
+    return sortedNums
+}
+
+let array = [15, 5, 6, 7, 2, 3, 55, 12, 28, 19]
+print(bubbleSort(array))
+
+
+
+//Black Diamond
+//Bubble sort is easy to understand, but slow for big arrays.
+//Insertion sort works well for small or nearly sorted arrays.
+//Merg sort is fater but uses extra memory.
+//Quick sort is usually very fast, but worst-case can be slow.
+//Built-in Swift sort uses optimized algorithms behind the scenes.
+//Some sorts are in-place, some require extra memory; trade offs exist between speed, memory, and simplicity.

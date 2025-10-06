@@ -23,3 +23,40 @@
         //  Output: [[1,2,3], [5,6,7], [9,10,11]]
 
 import Foundation
+
+func firstNonConsecutive(_ numbers: [Int]) -> Int? {
+    for i in 1..<numbers.count {
+        let current = numbers[i]
+        let previous = numbers[i - 1]
+        
+        if current != previous + 1 {
+            return current
+        }
+    }
+    
+    return nil
+}
+
+print(firstNonConsecutive([1,2,3,4,6,7,8]) ?? "All consecutive")
+print(firstNonConsecutive([1,2,3,4,5,6,7]) ?? "All consecutive")
+
+func groupConsecutive(_ numbers: [Int]) -> [[Int]] {
+    var result = [[Int]]()
+    var currentGroup = [Int]()
+    
+    for i in 0..<numbers.count {
+        currentGroup.append(numbers[i])
+        let current = numbers[i]
+        let previous = numbers[i - 1]
+        
+        if i == numbers.count - 1 || numbers[i] || != numbers[i] + 1 {
+            result.append(currentGroup)
+            currentGroup = []
+        }
+    }
+    
+    return result
+}
+
+print(groupConsecutive([1,2,3,5,6,7,9,10,11]))
+
