@@ -17,3 +17,33 @@
     //  You can find phone number formats here: 🔗https://en.wikipedia.org/wiki/National_conventions_for_writing_telephone_numbers
 
 import Foundation
+
+enum PhoneNumerError: Error {
+    case invalidNumber
+    
+}
+
+func formatPhoneNumber(_ input: String) throws -> String {
+    
+    let digits = input.filter(\.isNumber)
+    
+    guard digits.count == 10 else { throw PhoneNumerError.invalidNumber}
+    
+    let area = digits.prefix(3)
+    let mid = digits.dropFirst(3).prefix(3)
+    let last = digits.suffix(4)
+    
+    return "(\(area)-\(mid)-\(last)"
+}
+
+
+let testNumber = ["5558675309", "12345", "phone number", "801-321-5555"]
+
+for number in testNumber {
+    
+    do {
+        print("Input:", number, "→", try formatPhoneNumber(number))
+    } catch {
+        print("Input:", number, "→ Error: Invalid 10-digit number.")
+    }
+}

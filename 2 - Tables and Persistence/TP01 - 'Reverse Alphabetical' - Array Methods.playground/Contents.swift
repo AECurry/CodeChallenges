@@ -14,3 +14,25 @@
     //  Output: ["llji", "obb", "yslla"]
 
 import Foundation
+
+func reverseAlphebetical(_ names: [String]) -> [String] {
+    return names.sorted().reversed()
+}
+
+
+print(reverseAlphebetical(["Bob", "Jill", "Sally"]))
+print(reverseAlphebetical(["Vern", "Gidget", "Zeb"]))
+
+print(reverseAlphebetical(["Albert", "Dick", "Harry", "Tom"]))
+
+
+func blackDiamondReverse(_ words: [String]) -> [String] {
+    let transformed = words.map { word in
+         let reversedLetters = word.lowercased().map { String($0) }.sorted(by: >).joined()
+        return reversedLetters
+    }
+        return transformed.sorted()
+
+}
+
+print(blackDiamondReverse(["Bob", "Jill", "Sally"]))
