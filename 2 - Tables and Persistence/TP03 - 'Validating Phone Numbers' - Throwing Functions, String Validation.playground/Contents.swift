@@ -23,15 +23,15 @@ enum PhoneNumerError: Error {
     
 }
 
-func formatPhoneNumber(_ input: String) throws -> String {
+func formatPhoneNumber(_ input: String) throws -> String { 
     
     let digits = input.filter(\.isNumber)
     
-    guard digits.count == 10 else { throw PhoneNumerError.invalidNumber}
+    guard digits.count == 10 else { return "nil" }
     
-    let area = digits.prefix(3)
-    let mid = digits.dropFirst(3).prefix(3)
-    let last = digits.suffix(4)
+    let area = digits.prefix(3) // checks out the first 3 digits
+    let mid = digits.dropFirst(3).prefix(3) // drops the first 3 digits and checks out the next 3 digits
+    let last = digits.suffix(4) // drops the previous 3 digits and checks out the remaining 4 digits
     
     return "(\(area)-\(mid)-\(last)"
 }

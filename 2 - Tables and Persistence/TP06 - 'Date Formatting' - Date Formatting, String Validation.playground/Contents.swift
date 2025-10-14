@@ -18,5 +18,24 @@
 import Foundation
 
 func convertToDate(_ dateString: String) -> Date? {
-    return nil
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd"
+    formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.timeZone = TimeZone(secondsFromGMT: 0)
+    
+    return formatter.date(from: dateString)
 }
+
+func validateAndPrintDate(_ dateString: String) {
+    if let date = convertToDate(dateString) {
+        print("check '\(dateString)' -> Valid date: \(date)")
+    } else {
+        print("nil '\(dateString)' -> Invalid date")
+    }
+} 
+
+
+validateAndPrintDate("1992-12-20")   
+validateAndPrintDate("2001-50-90")
+validateAndPrintDate("2023-05-15")
+validateAndPrintDate("hello world")
