@@ -20,5 +20,41 @@
 import Foundation
 
 func timeString(from ballCounts: (hr: Int, fiveMin: Int, min: Int)) -> String {
-    return "Fix me to return the actual time based on these 👆 counts"
+    
+    let (hr, fiveMin, min) = ballCounts
+    
+    let totalMinutes = fiveMin * 5 + min
+    
+    let minuteString = String(format: "%02d", totalMinutes)
+    
+    return "The current time is \(hr):\(minuteString)"
 }
+
+print(timeString(from: (hr: 7, fiveMin: 7, min: 3)))
+
+print(timeString(from: (hr: 1, fiveMin: 0, min: 0)))
+
+
+// Black Diamond
+func reverseBallCounts(from date: Date) -> (hr: Int, fiveMin: Int, min: Int) {
+    
+    let calendar = Calendar.current
+    
+    let hour = calendar.component(.hour, from: date)
+    
+    let minute = calendar.component(.minute, from: date)
+    
+    
+    let hour12 = hour % 12 == 0 ? 12 : hour % 12
+    
+    let fiveMin = minute / 5
+    
+    let min = minute % 5
+    
+    
+    return (hr: hour12, fiveMin: fiveMin, min: min)
+}
+
+let now = Date()
+print(reverseBallCounts(from: now))
+

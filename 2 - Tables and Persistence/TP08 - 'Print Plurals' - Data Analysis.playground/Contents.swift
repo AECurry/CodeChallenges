@@ -22,3 +22,32 @@
     //  Output: Apples, Oranges, Pineapples, Bananas, Grapes
 
 import Foundation
+
+func printPlurals(from words: [String]) {
+    words.filter { $0.hasSuffix("s") }.forEach { print($0)
+    }
+}
+
+let fruits = ["Apple", "Oranges", "Pineapple", "Bananas", "Grapes", "Raspberry"]
+
+printPlurals(from: fruits)
+
+let animals = ["cats", "dog", "birds", "fish", "foxes", "bears"]
+printPlurals(from: animals)
+
+
+// BlackDiamond
+
+func smartPluralize(_ words: [String]) -> [String] {
+    words.map { word in
+        if word.hasSuffix("s") {
+            return word
+        } else {
+            return word + "s"
+        }
+    }
+}
+
+let input = ["Apple", "Oranges", "Pineapple", "Bananas", "Grapes", "Kiwi", "Pear"]
+let output = smartPluralize(input)
+print(output)
