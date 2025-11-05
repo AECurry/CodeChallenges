@@ -25,3 +25,37 @@
     //  Output: [1, 4, 4]
 
 import Foundation
+
+func nthPower(_ array: [Int], _ n: Int) -> Int? {
+    guard n >= 0 && n < array.count else {
+        return nil
+    }
+    
+    let element = array[n]
+    let result = pow(Double(element), Double(n))
+    return Int(result)
+        
+}
+
+print(nthPower([1, 2, 3, 4], 2) ?? "nil")
+print(nthPower([1, 2, 3], 3) ?? "nil")
+
+
+// Black Diamond
+
+func powerAllElements(_ array: [Int]) -> [Int] {
+    return array.enumerated().map { index, element in
+        if index == 0 { return 1 }
+        
+        var result = 1
+        for _ in 0..<index {
+            result *= element
+        }
+        
+        return result
+    }
+}
+
+print(powerAllElements([6, 4, 2]))
+print(powerAllElements([1, 2, 3, 4]))
+print(powerAllElements([1, 4, 4]))

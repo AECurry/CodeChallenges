@@ -20,3 +20,31 @@
     //  Make it so that your function only accepts positive integers and a limit higher than the base. Return nil or throw an error if not.
 
 import Foundation
+
+func multiples(of number: Int, upTo limit: Int) -> [Int] {
+    var result: [Int] = []
+    
+    for multiple in stride(from: number, through: limit, by: number) {
+        result.append(multiple)
+        
+    }
+    
+    return result
+}
+
+print(multiples(of: 2, upTo: 10))
+print(multiples(of: 5, upTo: 40))
+
+
+
+
+
+// Black Diamond
+func safeMultiples(of number: Int, upTo limit: Int) -> [Int]? {
+    (number > 0 && limit > number)
+        ? Array(stride(from: number, through: limit, by: number))
+        : nil
+}
+
+print(safeMultiples(of: -3, upTo: 12) ?? [])
+print(safeMultiples(of: 3, upTo: 12) ?? [])

@@ -17,3 +17,47 @@
     //  Rewrite your function to not rely on using a literal array for the alphabet. (In other words, the alphabet itself should not appear in your function.)
 
 import Foundation
+
+func alphabetPosition(of letter: Character) -> Int? {
+    
+    let lowercased = String(letter).lowercased()
+    let alphabet = "abcdefghijklmnopqurstuvwxyz"
+    
+    if let index = alphabet.firstIndex(of: Character(lowercased)) {
+        return alphabet.distance(from: alphabet.startIndex, to: index) + 1
+    }
+
+    return nil
+
+}
+
+print(alphabetPosition(of: "a") ?? "Not a letter")
+print(alphabetPosition(of: "z") ?? "Not a letter")
+print(alphabetPosition(of: "p") ?? "Not a letter")
+print(alphabetPosition(of: "1") ?? "Not a letter")
+
+
+
+// Black Diamond
+func alphabetPositionsSum(of string: String) -> Int? {
+    var sum = 0
+    
+    for character in string {
+        let lowercased = Character(character.lowercased())
+        guard let asciiValue = lowercased.asciiValue else { return nil }
+        
+        let position = Int(asciiValue - 96)
+        guard(1...26).contains(position) else { return nil }
+        
+        sum += position
+    }
+    
+    return sum
+}
+
+print(alphabetPositionsSum(of: "abc") ?? "nil")
+print(alphabetPositionsSum(of: "a") ?? "nil")
+print(alphabetPositionsSum(of: "z") ?? "nil")
+print(alphabetPositionsSum(of: "123") ?? "nil")
+print(alphabetPositionsSum(of: "alphabet") ?? "nil")
+ 

@@ -18,3 +18,43 @@
     //  let sum = [1,2,3,4,5].sumWithoutExtremes()
 
 import Foundation
+
+func sumWithoutExtremes(_ arr: [Int]) -> Int {
+    guard arr.count >= 3 else { return 0 }
+    
+    let sorted = arr.sorted()
+    
+    let withoutExtremes = sorted.dropFirst().dropLast()
+    
+    return withoutExtremes.reduce(0, +)
+}
+
+let testarry = [15,5,6,7,2,3,22,12,22]
+
+sumWithoutExtremes(testarry)
+
+
+
+// Black Diamond
+
+extension Array where Element == Int {
+    func sumWithoutExtremes() -> Int {
+        guard self.count >= 3 else { return 0 }
+        
+        let sorted = self.sorted()
+        
+        return sorted.dropFirst().dropLast().reduce(0, +)
+    }
+}
+
+let sum = [1, 2, 3, 4, 5, ].sumWithoutExtremes()
+    print(sum)
+
+
+let input = [15, 5, 6, 7, 2, 3, 12, 22]
+let result = input.sumWithoutExtremes()
+    print(result)
+
+print([1, 2].sumWithoutExtremes())
+print([5, 5, 5].sumWithoutExtremes())
+print([1, 1, 2, 2].sumWithoutExtremes())
