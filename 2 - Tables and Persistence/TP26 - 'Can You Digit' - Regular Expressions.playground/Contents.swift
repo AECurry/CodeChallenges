@@ -23,3 +23,48 @@
     //  3. A digit within a string: "abc7xyz" should return true.
 
 import Foundation
+
+// function that takes in a string as input and returns a boolean
+// Checks if the input string is a single digit using regex
+func canYouDigIt(_ input: String) -> Bool {
+    
+    // Regular expression pattern for exatcly one digit
+    // ^ (starts string), [0-9] checks if the chacter is a digit (0-9), $ (ends string)
+    let pattern = "^[0-9]$"
+    
+    // If input matches the patter, ranges(of:) will return a non-nill value
+    return input.range(of: pattern, options: .regularExpression) != nil
+}
+
+// Test
+print(canYouDigIt("7"))
+print(canYouDigIt("838"))
+print(canYouDigIt("Hi, how are you today?"))
+print(canYouDigIt("0"))
+
+
+
+
+
+// function that takes in a string as input and returns a boolean
+// Extended version that detects digits even with spaces, signs, or within text.
+func canYouDigitPro(_ input: String) -> Bool {
+    
+    // Pattern breakdown:
+    // - "\\s*"   → allows optional spaces before and after
+    // - "[+-]?"  → optional plus or minus sign
+    // - "\\d"    → any single digit (same as [0-9])
+    // - ".*"     → allows characters before or after the digit (to catch it anywhere in the string)
+    let pattern = ".*\\s*[+-]?\\d\\s*.*"
+    
+    // Returns true if the input contains a match for this pattern
+    return input.range(of: pattern, options: .regularExpression) != nil
+}
+
+// Test
+print(canYouDigitPro("  7  "))
+print(canYouDigitPro("+7"))
+print(canYouDigitPro("-7"))
+print(canYouDigitPro("abc7xyz"))
+print(canYouDigitPro("no digits"))
+
