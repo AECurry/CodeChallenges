@@ -15,3 +15,40 @@
     //  Suzuki wants to know which days of the week he climbed more stairs on average. Assuming the input array's contents are organized as [sunday, monday, tuesday, wednesday, thursday, friday, saturday], find the average number of stairs climbed for each day, then output a string of the weekdays, presenting them in order highest to lowest average (i.e. "tuesday, friday, wednesday, thursday, monday, saturday, sunday")
 
 import Foundation
+
+// A function that uses an array of arrays of Ints
+// (a year of stair counts) and returns a single Int representing the 20-year estimate.
+func stairsIn20Years(_ yearData: [[Int]]) -> Int {
+    
+    // This will hold the total number of stairs Suzuki climbed in one full year
+    var total = 0
+    
+    // Loop through each subarray — each one represents a day of the week
+    for day in yearData {
+        
+        // Loop through each number inside that day's list of entries
+        for stairs in day {
+            
+            // Add each stair count to our running yearly total
+            total += stairs
+        }
+    }
+    
+    // Multiply the one-year total by 20 to estimate twenty years of stair climbing
+    return total * 20
+}
+
+
+// Test
+let sampleYear = [
+    [100, 200, 150],
+    [300, 55],
+    [400, 100, 100],
+    [120],
+    [90, 60, 80, 25],
+    [1000],
+    [55]
+]
+
+let result = stairsIn20Years(sampleYear)
+print(result)
