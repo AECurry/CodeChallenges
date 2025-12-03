@@ -29,3 +29,38 @@
     //  Create more calculators for different animals. You could differentiate between large and small dogs, calculate parakeet or Galapagos tortoise years, or any other species you choose. Calculate them how you see fit.
 
 import Foundation
+
+// Using a function that takes in the number of human years each pet has lived and returns a tuple containing human, cat, and dog years.
+func animalYearCalculator(humanYears: Int) -> (humanYears: Int, catYears: Int, dogYears: Int) {
+    
+    // These variable will store the final cat and dog years
+    var catYears: Int
+    var dogYears: Int
+    
+    // Use a switch case to handle the 1 year, 2 years, or 3+ years cases
+    switch humanYears {
+        
+    case 1:
+        // first year of their lives
+        catYears = 15
+        dogYears = 15
+    
+    case 2:
+        // second year of their lives
+        catYears = 15 + 9
+        dogYears = 15 + 9
+        
+    default:
+        // 3+ years of their lives
+        let extraYears = humanYears - 2
+        catYears = 15 + 9 + (4 * extraYears)
+        dogYears = 15 + 9 + (5 * extraYears)
+    }
+    
+    // Returns that answer in a tuple
+    return (humanYears, catYears, dogYears)
+}
+
+
+// Test
+(animalYearCalculator(humanYears: 9))

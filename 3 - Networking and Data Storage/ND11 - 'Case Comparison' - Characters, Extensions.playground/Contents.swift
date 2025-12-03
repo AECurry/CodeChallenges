@@ -24,3 +24,38 @@
     //  Add another method that will instead return the input character in the same case as self.
 
 import Foundation
+
+// Extends the Character type so that a custom method can be added
+extension Character {
+    // A method that compares the case (uppercase/lowercase) of two characters.
+       // Returns:
+       //   -1 if either character is not a letter
+       //    1 if both characters are letters and the same case
+       //    0 if both characters are letters but different cases
+    func sameCaseAs(_ other: Character) -> Int {
+        
+        // Step 1: If either character is NOT a letter → return -1
+        guard self.isLetter && other.isLetter else {
+            return -1
+        }
+        
+        // Step 2: Both are letters — now check case
+        let selfUpper = self.isUppercase
+        let otherUpper = other.isUppercase
+        
+        
+        // Step 3: If both uppercase OR both lowercase → return 1
+        if selfUpper == otherUpper {
+            return 1
+        }
+        
+        // Step 4: Both letters but not the same case → return 0
+        return 0
+    }
+}
+
+// Test
+print(Character("a").sameCaseAs(Character("b")))
+print(Character("C").sameCaseAs(Character("d")))
+print(Character("5").sameCaseAs(Character("f")))
+
