@@ -20,7 +20,24 @@
 
 import Foundation
 
+// A simple structure to represent a point on a 2D coordinate plane
 struct Point {
-    var x: Int
-    var y: Int
+    var x: Int  // The point’s horizontal position
+    var y: Int  // The point’s vertical position
+
 }
+
+// This function returns the reflection of point `p` across point `q`
+func reflect(_ p: Point, over q: Point) -> Point {
+    
+    Point(
+        x: 2 * q.x - p.x,  // reflected X coordinate
+        y: 2 * q.y - p.y   // reflected Y coordinate
+    )
+}
+
+
+//Test
+print(reflect(Point(x: 0, y: 0), over: Point(x: 1, y: 1)))
+
+print(reflect(Point(x: 2, y: 6), over: Point(x: -2, y: -6)))
