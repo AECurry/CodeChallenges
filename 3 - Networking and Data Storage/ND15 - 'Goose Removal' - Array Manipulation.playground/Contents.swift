@@ -16,4 +16,27 @@
 
 import Foundation
 
-let geese = ["African", "Roman Tufted", "Toulouse", "Pilgrim", "Steinbacher"]
+
+// This function takes a list of bird names and returns the list
+// with all the “geese” removed.
+func removeGeese(from birds: [String]) -> [String] {
+
+    // A list of all the names of geese that we want to filter OUT.
+    // Any bird matching one of these names wiil be removed from the final result.
+    let geese = ["African", "Roman Tufted", "Toulouse", "Pilgrim", "Steinbacher"]
+    
+    // `filter` goes through the list and keeps only the birds that pass the test.
+    // If the condition is true, the bird stays. If it's false, the bird is removed.
+    return birds.filter { !geese.contains($0) }
+    
+}
+
+// Sample List
+let birds = ["Mallard", "Hook Bill", "African", "Crested", "Pilgrim", "Toulouse", "Blue Swedish"]
+
+// List goes through the function and a new list get stored in the 'result' with all the geese removed
+let result = removeGeese(from: birds)
+
+
+// Test
+print(result)

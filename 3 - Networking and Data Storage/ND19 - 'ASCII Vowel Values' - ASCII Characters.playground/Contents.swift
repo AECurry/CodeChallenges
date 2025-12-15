@@ -21,3 +21,43 @@
     //  Store their indices in the dictionary separately from their lowercase counterparts.
 
 import Foundation
+
+// This function takes an array of integers that represent ASCII values and returns a dictionary showing where each lowercase vowel appears in the array.
+func asciiVoewlValues(_ values: [Int]) -> [Character: [Int]] {
+    
+    // This dictionary stores the results starting with zero because a vowel may appear zero or more times.
+    var result: [Character: [Int]] = [
+        "a": [],
+        "e": [],
+        "i": [],
+        "o": [],
+        "u": []
+    ]
+    
+    // Created a loop through the input array while keeping track
+    // of both the index (position) and the value (ASCII number).
+    for (index, value) in values.enumerated() {
+        
+        // Attempt to convert the ASCII number into a UnicodeScalar. If the number is invalid, this safely fails and skips it.
+        if let scalar = UnicodeScalar(value) {
+            
+            // Convert the UnicodeScalar into a Character, so it can work with actual letters
+            let character = Character(scalar)
+            
+            // Checks whether this character is one of the vowel keys.If it is, we add the current index to that vowel’s array.
+            if result.keys.contains(character) {
+                result[character]?.append(index)
+            }
+        }
+    }
+    
+    // Returns the completed dictionary showing where each vowel appears in the input array.
+    return result
+}
+
+
+// Test
+
+let input = [97, 103, 98, 100]
+let output = asciiVoewlValues(input)
+print(output)

@@ -29,3 +29,47 @@
     //  If there are no valid solutions, return nil.
 
 import Foundation
+
+// Uses a function to take the total number of animal heads and legs,
+// and returns those numbers in an array.
+func countAnimals(heads: Int, legs: Int) -> [Int]? {
+    
+    // Reject impossible or negative inputs
+    if heads < 0 || legs < 0 { return nil }
+    
+    // Special case: zero heads must mean zero animals
+    if heads == 0 && legs == 0 { return [0, 0] }
+    
+    // If every animal on the farm were a cow (and cows have 4 legs),
+    // then the total number of legs would be 4 times the number of
+    // heads.
+    // The difference between that number and the actual legs
+    // tells us how many chickens there are, because each chicken
+    // uses 2 fewer legs than a cow.
+    // Then whatever heads remain must be cows
+    let chickensNumerator = 4 * heads - legs
+    
+    // If this is odd, chickens won't be a whole number — invalid case
+    if chickensNumerator % 2 != 0 { return nil }
+    
+    // Each chicken has 2 legs, so dividing by 2 gives us the actual number of chickens.
+    let chickens = chickensNumerator / 2
+    
+    // Once we know how many chickens there are, the rest of the heads must belong to cows.
+    // So we subtract chickens from the total number of heads to get the number of cows.
+    let cows = heads - chickens
+    
+    // Reject negative results — impossible in real life
+    if chickens < 0 || cows < 0 { return nil }
+    
+    // Return the exact number of chickens and cows
+    return [chickens, cows]
+}
+
+
+// Text
+countAnimals(heads: 72, legs: 200)
+
+countAnimals(heads: 72, legs: 201)
+
+countAnimals(heads: 0, legs: 0)
