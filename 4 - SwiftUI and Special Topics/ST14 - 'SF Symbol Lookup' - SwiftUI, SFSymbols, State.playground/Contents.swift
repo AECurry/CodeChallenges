@@ -22,32 +22,101 @@
 import SwiftUI
 import PlaygroundSupport
 
-struct ContentView: View {
-    let symbolChoices = ["cloud.rainbow.half.fill", "apple.terminal.on.rectangle.fill", "badge.plus.radiowaves.right", "sun.rain.fill"]
-    @State private var selectedSymbol: String = "cloud.rainbow.half.fill"
-    
-    var body: some View {
-        VStack {
-            Picker("Select a Symbol", selection: $selectedSymbol) {
-                ForEach(symbolChoices, id: \.self) { symbol in
-                    Text(symbol).tag(symbol)
-                }
-            }
-            .pickerStyle(WheelPickerStyle()) // Change this to your preferred style
-            .padding()
-            
-            Text("Selected Symbol: \(selectedSymbol)")
-                .font(.title)
-                .padding()
-            
-            Image(systemName: selectedSymbol, variableValue: 0.5)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 100, height: 100)
-                .padding()
+
+enum RenderingModeChoice: String, CaseIterable, Hashable {
+    case multicolor = "Multicolor"
+    case monochrome = "Monochrome"
+    case hierarchical = "Hierarchical"
+    case palette = "Palette"
+
+    var symbolMode: SymbolRenderingMode {
+        switch self {
+        case .multicolor: return .multicolor
+        case .monochrome: return .monochrome
+        case .hierarchical: return .hierarchical
+        case .palette: return .palette
         }
     }
 }
 
-PlaygroundPage.current.setLiveView(ContentView())
-
+struct ContentView: View {
+    
+    
+    let symbolChoices = [
+        "cloud.rainbow.half.fill",
+        "apple.terminal.on.rectangle.fill",
+        "badge.plus.radiowaves.right",
+        "sun.rain.fill"
+    ]
+    
+    @State private var selectedSymbol = "cloud.rainbow.half.fill"
+    
+    
+    @State private var scale: Image.Scale = .large
+    @State private var isBold = false
+    @State private var renderingMode: RenderingModeChoice = .multicolor
+    
+    @State private var primaryColor: Color = .blue
+    @State private var secondaryColor: Color = .green
+    @State private var tertiaryColor: Color = .orange
+    
+    @State private var variableValue: Double = 0.5
+    
+    var body: some View {
+        ScrollView {
+            VStack(spacing: 20) {
+                
+                
+                Picker("Select a Symbol", selection: $selectedSymbol) {
+                    ForEach(symbolChoices, id: \.self) { symbol in
+                        Text(symbol).tag(symbol)
+                    }
+                }
+                .pickerStyle(.wheel)
+                .padding()
+                
+                
+                Image(systemName: selectedSymbol, variableValue: variableValue)
+                    .font(.system(size: 80, weight: isBold ? .bold : .regular))
+                    .imageScale(scale)
+                    .symbolRenderingMode(renderingMode.symbolMode)
+                    .foregroundStyle(primaryColor, secondaryColor, tertiaryColor)
+                    .padding()
+                
+                
+                Form {
+                    
+                    Picker("Scale", selection: $scale) {
+                        Text("Small").tag(Image.Scale.small)
+                        Text("Medium").tag(Image.Scale.medium)
+                        Text("Large").tag(Image.Scale.large)
+                    }
+                    
+                    Toggle("Bold Weight", isOn: $isBold)
+                    
+                    Picker("Rendering Mode", selection: $renderingMode) {
+                        ForEach(RenderingModeChoice.allCases, id: \.self) { mode in
+                            Text(mode.rawValue).tag(mode)
+                        }
+                    }
+                    
+                    Section("Colors") {
+                        ColorPicker("Primary", selection: $primaryColor)
+                        ColorPicker("Secondary", selection: $secondaryColor)
+                        ColorPicker("Tertiary", selection: $tertiaryColor)
+                    }
+                    
+                    Section("Variable Coloring") {
+                        Slider(value: $variableValue, in: 0...1)
+                        Text("Value: \(variableValue, specifier: "%.2f")")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+            }
+            .padding()
+        }
+    }
+}
+    
+    PlaygroundPage.current.setLiveView(ContentView())

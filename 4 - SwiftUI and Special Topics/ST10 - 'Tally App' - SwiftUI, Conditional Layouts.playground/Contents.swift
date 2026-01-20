@@ -31,15 +31,28 @@ struct ContentView: View {
     @State var squaresFilled = 1
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading, spacing: 8) {
+            
+            // Creates rows
             ForEach(0..<10) { row in
-                HStack {
+                HStack(spacing: 8) {
+                    
+                    //Creates columns
                     ForEach(0..<5) { column in
-                        // FIXME: Add code below to display red rectangles
+                        
+                        
+                        // Calculates this square's position in the grid
+                        let position = row * 5 + column
+                        
+                        // Decides whether to show a red square
+                        Rectangle()
+                            .fill(position < squaresFilled ? Color.red : Color.clear)
+                            .frame(width: 40, height: 40)
                     }
                 }
             }
         }
+        
         .onTapGesture {
             squaresFilled += 1
             print(squaresFilled)

@@ -18,27 +18,51 @@ import PlaygroundSupport
 
 struct ContentView: View {
     var body: some View {
-        VStack {
+        VStack (spacing: 24){
+            
             Text("My Profile")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .foregroundStyle(.white)
             
             Spacer()
             
-            Text("Hi! My name is...")
-
-            Spacer()
-            
-            Text("My interests are...")
-            
-            Spacer()
-            
-            Text("I really dislike...")
-            
+                
+            Text("Hi! My name is Ann Elaine")
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(Color.white.opacity(0.8))
+                    .cornerRadius(16)
+                
+                Spacer()
+                
+                Text("My interests are Books, Design, Pickleball")
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(Color.white.opacity(0.8))
+                    .cornerRadius(16)
+                
+                
+                Spacer()
+                
+                Text("I really dislike being rushed")
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(Color.white.opacity(0.8))
+                    .cornerRadius(16)
+                
+                
             Spacer()
         }
+        .padding()
         .frame(width: 500, height: 700)
-        .background(Color.cyan)
+        .background(
+                    LinearGradient(
+                        colors: [.cyan, .mint],
+                        startPoint: .top,
+                        endPoint: .bottom
+                        ))
     }
 }
 
 PlaygroundPage.current.setLiveView(ContentView())
-

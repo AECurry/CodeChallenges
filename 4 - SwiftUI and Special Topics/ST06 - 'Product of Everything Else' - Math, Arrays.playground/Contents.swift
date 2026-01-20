@@ -15,3 +15,42 @@
     //  If 'excludeZeroes' is true, the function should exclude any zeroes in the input array when calculating the products. Otherwise, the function should behave as originally specified.
 
 import Foundation
+
+// Uses a function to take a list of integers and return a new list
+// where each value is the product of all the other numbers except itself.
+func productOfEverythingElse(_ numbers: [Int]) -> [Int] {
+    
+    // Count how many zeros are in the array
+    let zeroCount = numbers.filter { $0 == 0}.count
+    
+    // If more than one zero, every product will be zero
+    if zeroCount > 1 {
+        return Array(repeating: 0, count: numbers.count)
+    }
+    
+    // Compute the product of all non-zero numbers
+    let totalProduct = numbers.reduce(1) { result, number in number == 0 ? result : result * number
+    }
+    
+    // Build the result array
+    return numbers.map { number in
+        if zeroCount == 1 {
+            
+            // Only the zero position gets the product
+            return number == 0 ? totalProduct : 0
+            
+        } else {
+            // No zeros — safe to divide
+            return totalProduct / number
+        }
+    }
+}
+
+
+// Test
+
+productOfEverythingElse([1, 2, 3, 4, 5])
+
+productOfEverythingElse([1, 2, 0, 4])
+
+productOfEverythingElse([0, 0, 3])

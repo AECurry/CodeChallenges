@@ -13,5 +13,6 @@
 //  MARK: Student response
 /*  Write your response below.
  
+ I've mastered the Architecture of MVVM; parent/child relationships; SOLID principles; and I have enjoyed increasing my skills in other Libraries such as SwiftData, API, Navigation, and applying animations to increase the visual appel of the apps I am creating.
  
  */
