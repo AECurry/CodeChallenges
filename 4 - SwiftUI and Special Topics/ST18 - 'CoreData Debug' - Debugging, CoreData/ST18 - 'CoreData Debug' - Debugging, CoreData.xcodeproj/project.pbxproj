@@ -3,29 +3,28 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0ADE39542C136A700045ACFF /* ST18CoreDataDebugDebuggingCoreDataApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE39532C136A700045ACFF /* ST18CoreDataDebugDebuggingCoreDataApp.swift */; };
-		0ADE39562C136A700045ACFF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE39552C136A700045ACFF /* ContentView.swift */; };
 		0ADE39582C136A720045ACFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ADE39572C136A720045ACFF /* Assets.xcassets */; };
 		0ADE395B2C136A720045ACFF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ADE395A2C136A720045ACFF /* Preview Assets.xcassets */; };
-		0ADE395D2C136A720045ACFF /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE395C2C136A720045ACFF /* Persistence.swift */; };
-		0ADE39602C136A720045ACFF /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE395E2C136A720045ACFF /* CoreData.xcdatamodeld */; };
-		0ADE39672C136DA40045ACFF /* ChickenNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE39662C136DA40045ACFF /* ChickenNames.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0ADE39502C136A700045ACFF /* ST18 - 'CoreData Debug' - Debugging, CoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ST18 - 'CoreData Debug' - Debugging, CoreData.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ADE39532C136A700045ACFF /* ST18CoreDataDebugDebuggingCoreDataApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ST18CoreDataDebugDebuggingCoreDataApp.swift; sourceTree = "<group>"; };
-		0ADE39552C136A700045ACFF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0ADE39572C136A720045ACFF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0ADE395A2C136A720045ACFF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		0ADE395C2C136A720045ACFF /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		0ADE395F2C136A720045ACFF /* ST18____CoreData_Debug____Debugging__CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ST18____CoreData_Debug____Debugging__CoreData.xcdatamodel"; sourceTree = "<group>"; };
-		0ADE39662C136DA40045ACFF /* ChickenNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChickenNames.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		49C824582F28EB0B0097EFB2 /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
+		49C824592F28EB190097EFB2 /* ViewModels */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewModels; sourceTree = "<group>"; };
+		49C8245A2F28EB250097EFB2 /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
+		49C8245B2F28EB900097EFB2 /* CoreData */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CoreData; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		0ADE394D2C136A700045ACFF /* Frameworks */ = {
@@ -41,6 +40,10 @@
 		0ADE39472C136A700045ACFF = {
 			isa = PBXGroup;
 			children = (
+				49C8245B2F28EB900097EFB2 /* CoreData */,
+				49C8245A2F28EB250097EFB2 /* Models */,
+				49C824592F28EB190097EFB2 /* ViewModels */,
+				49C824582F28EB0B0097EFB2 /* Views */,
 				0ADE39522C136A700045ACFF /* ST18 - 'CoreData Debug' - Debugging, CoreData */,
 				0ADE39512C136A700045ACFF /* Products */,
 			);
@@ -58,11 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				0ADE39532C136A700045ACFF /* ST18CoreDataDebugDebuggingCoreDataApp.swift */,
-				0ADE39552C136A700045ACFF /* ContentView.swift */,
-				0ADE39662C136DA40045ACFF /* ChickenNames.swift */,
 				0ADE39572C136A720045ACFF /* Assets.xcassets */,
-				0ADE395C2C136A720045ACFF /* Persistence.swift */,
-				0ADE395E2C136A720045ACFF /* CoreData.xcdatamodeld */,
 				0ADE39592C136A720045ACFF /* Preview Content */,
 			);
 			path = "ST18 - 'CoreData Debug' - Debugging, CoreData";
@@ -90,6 +89,12 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				49C824582F28EB0B0097EFB2 /* Views */,
+				49C824592F28EB190097EFB2 /* ViewModels */,
+				49C8245A2F28EB250097EFB2 /* Models */,
+				49C8245B2F28EB900097EFB2 /* CoreData */,
 			);
 			name = "ST18 - 'CoreData Debug' - Debugging, CoreData";
 			productName = "ST18 - 'CoreData Debug' - Debugging, CoreData";
@@ -146,10 +151,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0ADE39602C136A720045ACFF /* CoreData.xcdatamodeld in Sources */,
-				0ADE39672C136DA40045ACFF /* ChickenNames.swift in Sources */,
-				0ADE395D2C136A720045ACFF /* Persistence.swift in Sources */,
-				0ADE39562C136A700045ACFF /* ContentView.swift in Sources */,
 				0ADE39542C136A700045ACFF /* ST18CoreDataDebugDebuggingCoreDataApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -354,19 +355,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		0ADE395E2C136A720045ACFF /* CoreData.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				0ADE395F2C136A720045ACFF /* ST18____CoreData_Debug____Debugging__CoreData.xcdatamodel */,
-			);
-			currentVersion = 0ADE395F2C136A720045ACFF /* ST18____CoreData_Debug____Debugging__CoreData.xcdatamodel */;
-			path = CoreData.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 0ADE39482C136A700045ACFF /* Project object */;
 }

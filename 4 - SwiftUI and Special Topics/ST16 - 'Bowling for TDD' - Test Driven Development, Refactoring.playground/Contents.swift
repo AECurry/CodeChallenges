@@ -22,76 +22,77 @@
 //  ⌺ Black Diamond Challenge:
     //  Change the rolls array to be an array of ten Frame objects that each hold specific rolls. Change each scoring function to accommodate this.
 
+//  Needed for running in a Playground / iOS context
 import UIKit
+//  Used to run unit tests directly in the Playground
 import XCTest
 
 var greeting = "Hello, playground"
 
+// Represents a single bowling game
 class Game {
-    private var rolls: [Int] = Array(repeating: 0, count: 21)
+
+    // Stores all rolls in the game (max 21 rolls including bonus rolls)
+    private var rolls = Array(repeating: 0, count: 21)
+
+    // Tracks the index where the next roll will be recorded
     private var currentRoll = 0
-    
-    let bestScorePossibleForOneFrame = 10
-    
+
+    // Records a roll by storing pins knocked down
     func roll(pins: Int) {
         rolls[currentRoll] = pins
         currentRoll += 1
     }
-    
+
+    // Calculates the total score for the game
     func score() -> Int {
         var score = 0
         var frameIndex = 0
-        
-        var loopCounter = 0
 
-        while loopCounter < 10 {
-          let currentFrame = frameIndex
+        // Bowling always consists of exactly 10 frames
+        for _ in 0..<10 {
 
-          switch isStrike(currentFrame) {
-          case true:
-            // Player has bowled a strike and should get ten points and go to next frame
-            score += bestScorePossibleForOneFrame + strikeBonus(currentFrame)
-            frameIndex += 1
-          case false where isSpare(currentFrame):
-            // Player has bowled a spare and should get ten points plust their spare bonus and go up two frames
-            score += bestScorePossibleForOneFrame + spareBonus(currentFrame)
-            frameIndex += 2
-          default:
-            // Player has bowled a normal frame and should get however many points they earned for this frame
-            score += sumOfBallsInFrame(currentFrame)
-            frameIndex += 2
-          }
+            // Strike: 10 pins knocked down in one roll
+            if isStrike(frameIndex) {
+                score += 10 + strikeBonus(frameIndex)
+                frameIndex += 1
 
-          loopCounter += 1
+            // Spare: two rolls in a frame total 10 pins
+            } else if isSpare(frameIndex) {
+                score += 10 + spareBonus(frameIndex)
+                frameIndex += 2
+
+            // Normal frame: sum of two rolls
+            } else {
+                score += rolls[frameIndex] + rolls[frameIndex + 1]
+                frameIndex += 2
+            }
         }
-        
+
         return score
     }
-    
-    private func goToRollArrayAndFindSpecificRollForGivenFrameIndex(frameIndex: Int) -> Int {
-        rolls[frameIndex]
+
+    // Returns true if the roll at the index is a strike
+    private func isStrike(_ index: Int) -> Bool {
+        rolls[index] == 10
     }
-    
-    private func isStrike(_ frameIndex: Int) -> Bool {
-        return goToRollArrayAndFindSpecificRollForGivenFrameIndex(frameIndex: frameIndex) == bestScorePossibleForOneFrame
+
+    // Returns true if two rolls in a frame equal a spare
+    private func isSpare(_ index: Int) -> Bool {
+        rolls[index] + rolls[index + 1] == 10
     }
-    
-    private func sumOfBallsInFrame(_ frameIndex: Int) -> Int {
-        return goToRollArrayAndFindSpecificRollForGivenFrameIndex(frameIndex: frameIndex) + goToRollArrayAndFindSpecificRollForGivenFrameIndex(frameIndex: frameIndex + 1)
+
+    // Bonus for a strike is the next two rolls
+    private func strikeBonus(_ index: Int) -> Int {
+        rolls[index + 1] + rolls[index + 2]
     }
-    
-    private func spareBonus(_ frameIndex: Int) -> Int {
-        return goToRollArrayAndFindSpecificRollForGivenFrameIndex(frameIndex: frameIndex + 2)
-    }
-    
-    private func strikeBonus(_ frameIndex: Int) -> Int {
-        return goToRollArrayAndFindSpecificRollForGivenFrameIndex(frameIndex: frameIndex + 1) + goToRollArrayAndFindSpecificRollForGivenFrameIndex(frameIndex: frameIndex + 2)
-    }
-    
-    private func isSpare(_ frameIndex: Int) -> Bool {
-        return goToRollArrayAndFindSpecificRollForGivenFrameIndex(frameIndex: frameIndex) + goToRollArrayAndFindSpecificRollForGivenFrameIndex(frameIndex: frameIndex + 1) == bestScorePossibleForOneFrame
+
+    // Bonus for a spare is the next roll
+    private func spareBonus(_ index: Int) -> Int {
+        rolls[index + 2]
     }
 }
+
 
 class BowlingGameTests: XCTestCase {
     private var game = Game()

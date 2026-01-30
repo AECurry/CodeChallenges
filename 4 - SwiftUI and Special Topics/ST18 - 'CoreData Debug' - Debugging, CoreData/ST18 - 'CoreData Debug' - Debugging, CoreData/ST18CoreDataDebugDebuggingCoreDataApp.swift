@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct ST18CoreDataDebugDebuggingCoreDataApp: App {
+struct ST18CoreDataDebugApp: App {
     let persistenceController = PersistenceController.shared
 
     var body: some Scene {
@@ -18,3 +18,4 @@ struct ST18CoreDataDebugDebuggingCoreDataApp: App {
         }
     }
 }
+
