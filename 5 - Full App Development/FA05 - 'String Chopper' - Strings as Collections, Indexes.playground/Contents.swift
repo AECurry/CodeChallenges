@@ -17,3 +17,30 @@
     //  Input: splitNCasesUnevenly("Characters", 3), Output: ["Cha", "rac", "ters"]
 
 import Foundation
+
+func splitNCases(_ str: String, _ cases: Int) -> [String]? {
+    guard cases > 0 else { return nil }
+    
+    let characters = Array(str)
+    
+    guard characters.count % cases == 0 else { return nil }
+    
+    let chunkSize = characters.count / cases
+    var result: [String] = []
+    
+    for i in 0..<cases {
+        let start = i * chunkSize
+        let end = start + chunkSize
+        let chunk = String(characters[start..<end])
+        result.append(chunk)
+    }
+    
+    return result
+}
+
+
+// Test
+print(splitNCases("Strengthened", 6) ?? [])
+print(splitNCases("Unscrupulous", 2) ?? [])
+print(splitNCases("Flavorless", 1) ?? [])
+print(splitNCases("Hello", 3) ?? [])

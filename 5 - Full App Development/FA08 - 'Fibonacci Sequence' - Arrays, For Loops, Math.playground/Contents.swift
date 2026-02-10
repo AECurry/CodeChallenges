@@ -20,3 +20,35 @@
     //  Input: (fibSeq(n: 4, i: 7), Output: [8, 13, 21, 34]
 
 import Foundation
+
+func fibSeq(_ n: Int) -> [Int] {
+    
+    if n == 0 {
+        return []
+}
+
+    if n == 1 {
+        return []
+        
+}
+
+    var sequence = [0, 1]
+
+    while sequence.count < n {
+           let nextValue = sequence[sequence.count - 1] + sequence[sequence.count - 2]
+           sequence.append(nextValue)
+       }
+
+    return sequence
+
+}
+
+
+// Test
+print(fibSeq(4))
+print(fibSeq(7))
+print(fibSeq(0))
+print(fibSeq(2))
+print(fibSeq(8))
+print(fibSeq(1))
+ 
