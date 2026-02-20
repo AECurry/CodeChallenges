@@ -12,6 +12,8 @@
     //  If there is extra time after sharing, you may then convert this challenge into Swift code below. Do not do so until you've had a chance to reason through it out loud.
 
 // MARK: Student response
-/*
+/* I would fill up my three-quart jug and pour that into the five quart jug. Then I would fill up my three-quart jug again and fill up the rest of the five-quart jug leaving my only one quart left in the three-quart jug. Then I would completely dump out the five-quart jug and once empty I would pour the 1-quart that was left in my three-quart jug into the five-quart jug and then fill up my three-quart jug again and pour all of that into my five quart jug giving me exactly 4-quarts.
  
  */
+
+
