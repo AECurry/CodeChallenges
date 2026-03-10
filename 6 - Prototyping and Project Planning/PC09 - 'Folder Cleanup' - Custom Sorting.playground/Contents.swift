@@ -53,8 +53,53 @@
     //  Output: [
         //  ["project-1.html", "project-2.js"],
         //  ["task-1.html", "task-2.js"] ]
+
+
+
 import Foundation
 
 func cleanUp(_ input: [String], _ type: String) -> [[String]] {
-    return []
+    var groups: [String: [String]] = [:]
+    var orderOfKeys: [String] = []
+    
+    for file in input {
+        let components = file.components(separatedBy: ".")
+        let key: String
+        
+        // Handles files without dots or hidden files starting with a dot
+        if components.count == 1 || (components.count == 2 && components[0] == "") {
+            key = (type == "prefix") ? file : "no_extension"
+        } else {
+            // Prefix = first part; Suffix = last part
+            key = (type == "prefix") ? (components.first ?? "") : (components.last ?? "")
+        }
+        
+        if groups[key] == nil {
+            groups[key] = []
+            orderOfKeys.append(key)
+        }
+        groups[key]?.append(file)
+    }
+    
+    return orderOfKeys.compactMap { groups[$0] }
 }
+
+// TEST 
+
+let messyFolder = [
+    "music_app.js",     // Standard
+    "music_app.png",    // Standard
+    "README",           // No dot
+    "archive.tar.gz",   // Multiple dots
+    ".gitignore",       // Hidden (starts with dot)
+    "tetris.js",        // Standard
+    "setup"             // No dot
+]
+
+print("--- Testing Prefix Method ---")
+let prefixResult = cleanUp(messyFolder, "prefix")
+prefixResult.forEach { print($0) }
+
+print("\n--- Testing Suffix Method ---")
+let suffixResult = cleanUp(messyFolder, "suffix")
+suffixResult.forEach { print($0) }

@@ -27,5 +27,26 @@
 import Foundation
 
 func timeAdjust(now: String, hrs: Int, min: Int, sec: Int) -> String {
-    return ""
+    // 1. Split the "now" string and convert everything to total seconds
+    let components = now.split(separator: ":").compactMap { Int($0) }
+    guard components.count == 3 else { return "Invalid Input" }
+    
+    let currentHrs = components[0]
+    let currentMin = components[1]
+    let currentSec = components[2]
+    
+    // Convert current time and added time into seconds
+    let totalInitialSeconds = (currentHrs * 3600) + (currentMin * 60) + currentSec
+    let totalAddedSeconds = (hrs * 3600) + (min * 60) + sec
+    
+    // 2. Add them together and use modulo for the 24-hour wrap (86400 seconds in a day)
+    let finalSecondsInDay = (totalInitialSeconds + totalAddedSeconds) % 86400
+    
+    // 3. Convert back to HH:mm:ss
+    let finalHrs = (finalSecondsInDay / 3600) % 24
+    let finalMin = (finalSecondsInDay / 60) % 60
+    let finalSec = finalSecondsInDay % 60
+    
+    // 4. Return formatted string with leading zeros
+    return String(format: "%02d:%02d:%02d", finalHrs, finalMin, finalSec)
 }
