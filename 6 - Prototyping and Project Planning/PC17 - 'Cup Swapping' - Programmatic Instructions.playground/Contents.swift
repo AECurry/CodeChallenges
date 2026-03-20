@@ -28,3 +28,38 @@
     //  In addition to determining the final position of the ball, extend the function to also return the final positions of all three cups (A, B, and C) after the swaps.
 
 import Foundation
+
+enum Position: String {
+    case A, B, C
+}
+
+func cupSwapping(_ swaps: [String]) -> String {
+    // The ball starts at position B
+    var ballPosition = Position.B
+    
+    for swap in swaps {
+        // Convert the string (e.g., "AB") into an array of characters
+        let cups = Array(swap).map { String($0) }
+        let cup1 = cups[0]
+        let cup2 = cups[1]
+        
+        // If the ball is under one of the cups being swapped,
+        // it moves to the other cup's position.
+        if ballPosition.rawValue == cup1 {
+            ballPosition = Position(rawValue: cup2)!
+        } else if ballPosition.rawValue == cup2 {
+            ballPosition = Position(rawValue: cup1)!
+        }
+        
+        // If the ball isn't under either cup, nothing happens!
+    }
+    
+    return ballPosition.rawValue
+}
+
+// Test
+print(cupSwapping(["AB", "CA", "AB"]))
+print(cupSwapping(["AB", "CA"]))
+print(cupSwapping(["AC", "CA", "CA", "AC"]))
+print(cupSwapping(["BA", "AC", "CA", "BC"]))
+

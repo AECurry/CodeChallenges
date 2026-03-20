@@ -27,3 +27,32 @@
     //  Create another function. This will take an input, "maximum", and return a dictionary. The keys of the dictionary will be every integer starting from 0 up until maximum, and the values of the dictionary will be the additivePersistence of each given integer.
 
 import Foundation
+
+func additivePersistence(_ n: Int) -> Int {
+    var currentNumber = n
+    var count = 0
+    
+    // When the number is 10 or greater, it has at least 2 digits
+    while currentNumber >= 10 {
+        // 1. Convert the number to a string to access individual characters (digits)
+        let digits = String(currentNumber)
+        
+        // 2. Maps those characters back to integers and sums them up
+        let sum = digits.compactMap { Int(String($0)) }.reduce(0, +)
+        
+        // 3. Updates currentNumber with the new sum
+        currentNumber = sum
+        
+        // 4. Increments the persistence counter
+        count += 1
+        
+        print("Iteration \(count): New sum is \(currentNumber)")
+    }
+    
+    return count
+}
+
+// Test cases
+print("Result: \(additivePersistence(1679583))")
+print("Result: \(additivePersistence(123456))")
+print("Result: \(additivePersistence(6))")
