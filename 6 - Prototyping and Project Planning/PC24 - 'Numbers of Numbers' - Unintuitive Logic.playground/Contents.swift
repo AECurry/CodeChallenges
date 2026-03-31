@@ -19,3 +19,24 @@
     //  Make it so that your function also stores a log of all processed integers in the form of a dictionary, where the key is the input integer and the value is the output integer. Change your function so that, if an already processed integer is passed to it, it finds the correct output from the dictionary and returns that instead of reprocessing the input.
 
 import Foundation
+
+func numbersOfNumbers(_ num: Int) -> Int {
+    let str = String(num)
+    var counts: [Character: Int] = [:]
+    
+    for d in str {
+        counts[d, default: 0] += 1
+    }
+    
+    let result = str.map { String(counts[$0]!) }.joined()
+    
+    return Int(result) ?? 0
+}
+
+// Test
+
+print(numbersOfNumbers(136116))
+print(numbersOfNumbers(22))
+print(numbersOfNumbers(121))
+print(numbersOfNumbers(5))
+print(numbersOfNumbers(111))
