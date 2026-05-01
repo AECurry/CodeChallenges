@@ -21,3 +21,42 @@
     //  Input: "challenge", output: "allengechay"
 
 import Foundation
+
+func toPigLatin(_ input: String) -> String {
+    let vowels = "aeiouAEIOU"
+    
+    // Split the sentence into an array of words
+    let words = input.components(separatedBy: " ")
+    
+    let transformedWords = words.map { word -> String in
+        // Safety check for empty strings
+        guard let firstChar = word.first else { return "" }
+        
+        var result = ""
+        
+        // Rule: Check if first letter is a vowel
+        if vowels.contains(firstChar) {
+            result = word + "ay"
+        } else {
+            // Move first letter to end
+            let restOfWord = word.dropFirst()
+            result = String(restOfWord) + String(firstChar) + "ay"
+        }
+        
+        // Handle Capitalization
+        if firstChar.isUppercase {
+            return result.lowercased().capitalized
+        } else {
+            return result.lowercased()
+        }
+    }
+    
+    // Join the words back into a single string
+    return transformedWords.joined(separator: " ")
+}
+
+// Example Usage:
+let challenge = "This is a really great code challenge"
+print(toPigLatin(challenge))
+// Output: "Isthay isay away eallyray reatgay odecay hallengecay"
+

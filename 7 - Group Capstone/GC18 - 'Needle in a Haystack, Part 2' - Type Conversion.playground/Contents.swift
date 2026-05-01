@@ -27,3 +27,54 @@
     //  You only need to return the first appearance of each subsequent letter (i.e., in the above example, only the "o" in "meteor" is used, not the one in "shower").
 
 import Foundation
+
+// From Part 1
+func hexStringToIntManual(_ hex: String) -> Int {
+    let hexDigits = Array(hex.uppercased())
+    var result = 0
+    
+    for digit in hexDigits {
+        result *= 16
+        if let value = Int(String(digit)) {
+            result += value
+        } else if digit >= "A" && digit <= "F" {
+            result += Int(digit.asciiValue! - 55)
+        }
+    }
+    return result
+}
+
+// From Part 1
+func intToASCIICharacter(_ intValue: Int) -> String {
+    if let unicodeScalar = UnicodeScalar(intValue) {
+        return String(unicodeScalar)
+    }
+    return ""
+}
+
+
+func findNeedleInHaystack(_ haystackHex: String, _ needle: String) -> Int {
+    
+    let hexPairs = haystackHex.split(separator: " ").map(String.init)
+    
+   
+    var decodedString = ""
+    for hexPair in hexPairs {
+        let intValue = hexStringToIntManual(hexPair)
+        let character = intToASCIICharacter(intValue)
+        decodedString += character
+    }
+    
+  
+    if let range = decodedString.range(of: needle) {
+        return decodedString.distance(from: decodedString.startIndex, to: range.lowerBound)
+    }
+    
+    return -1
+}
+
+// Test the examples
+print(findNeedleInHaystack("68 65 6c 6c 6f 20 77 6f 72 6c 64", "world"))
+print(findNeedleInHaystack("47 6f 6f 64 62 79 65 20 77 6f 72 6c 64", "world"))
+print(findNeedleInHaystack("42 6f 72 65 64", "Bored"))
+

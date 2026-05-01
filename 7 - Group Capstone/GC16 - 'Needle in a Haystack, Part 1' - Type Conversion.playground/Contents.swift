@@ -33,3 +33,32 @@
     //  Since this challenge builds into the next, there is no Black Diamond for this challenge.
 
 import Foundation
+
+func hexStringToIntManual(_ hex: String) -> Int {
+    let hexDigits = Array(hex.uppercased())
+    var result = 0
+    
+    for digit in hexDigits {
+        result *= 16
+        if let value = Int(String(digit)) {
+            result += value
+        } else if digit >= "A" && digit <= "F" {
+            result += Int(digit.asciiValue! - 55)  // 'A' = 65, minus 55 = 10
+        }
+    }
+    return result
+}
+
+// Test
+
+let testHex = "4C"
+let result = hexStringToIntManual(testHex)
+print("Hex \"\(testHex)\" converts to: \(result)")
+
+// Test multiple values
+print("\nTesting multiple hex values:")
+print("Hex \"2F\" = \(hexStringToIntManual("2F"))")
+print("Hex \"FF\" = \(hexStringToIntManual("FF"))")
+print("Hex \"0A\" = \(hexStringToIntManual("0A"))")
+print("Hex \"B8\" = \(hexStringToIntManual("B8"))")
+
