@@ -32,3 +32,41 @@ Thousands   M  MM  MMM  -   -   -   -   -   -
     //  Extend your code to also include a function that converts an integer to a Roman numeral. The function should take an integer as input and return a string representing the Roman numeral equivalent.
 
 import Foundation
+
+func romanToInt(_ roman: String) -> Int {
+    let values: [Character: Int] = [
+        "I": 1,
+        "V": 5,
+        "X": 10,
+        "L": 50,
+        "C": 100,
+        "D": 500,
+        "M": 1000
+    ]
+    
+    var result = 0
+    let characters = Array(roman)
+    
+    for i in 0..<characters.count {
+        let currentVal = values[characters[i]]!
+        
+        if i + 1 < characters.count {
+            let nextVal = values[characters[i + 1]]!
+            
+            if currentVal < nextVal {
+                result -= currentVal
+            } else {
+                result += currentVal
+            }
+        } else {
+            result += currentVal
+        }
+    }
+    
+    return result
+}
+
+// Test
+print(romanToInt("VII"))
+print(romanToInt("DCLXXIX"))
+print(romanToInt("MMMCMV"))
